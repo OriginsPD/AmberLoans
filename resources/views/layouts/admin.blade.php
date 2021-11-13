@@ -16,22 +16,17 @@
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
     @livewireStyles
 </head>
-<body class="h-screen antialiased leading-none font-sans ">
+<body class="h-screen antialiased leading-none font-sans">
 
-<div
-    class="relative text-white  bg-center bg-no-repeat bg-cover"
-    style="background-image: url(https://cdn.pixabay.com/photo/2016/08/19/10/20/money-1604921_960_720.jpg); height: 100vh "
-    role="banner">
+<div @click.away="isSlide = false" x-data="{ isSlide: false }" >
 
-    <div class="bg-green-600 absolute bg-opacity-75 z-10 h-screen w-screen" style="height: 100vh"></div>
+    @livewire('navigation.admin.header')
 
-
-    @livewire('navigation.home.index-navi')
+    @livewire('navigation.admin.side-bar')
 
     @yield('content')
 
 </div>
-
 
 <!-- Footer End of Body -->
 @livewireScripts
