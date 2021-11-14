@@ -76,7 +76,7 @@
 
             <x-input.submit color="green">
 
-                <span wire:loading wire:loading.class="animate-spin">
+                <span wire:loading.delay wire:loading.class="animate-spin">
 
                     <i class="far fa-spinner transform duration-300 text-white "></i>
 

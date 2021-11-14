@@ -33,6 +33,8 @@ class RequestLoan extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'customer_id',
         'loan_id',

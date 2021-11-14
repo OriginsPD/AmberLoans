@@ -6,7 +6,11 @@ module.exports = {
   theme: {
     extend: {}
   },
-  variants: {},
+  variants: {
+      extends:{
+          opacity:[ 'disabled' ],
+      },
+  },
   plugins: [
     require('@tailwindcss/ui'),
   ]

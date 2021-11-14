@@ -1,6 +1,6 @@
-<div class="absolute  z-40 py-2 bg-transparent  h-20">
+<div class="absolute w-screen z-20 py-2 bg-transparent  h-20">
 
-    <div class="px-4 mx-auto sm:pr-0 max-w-screen-2xl">
+    <div class="px-4 mx-auto sm:pr-0 w-screen">
 
         <div class="flex items-center justify-between h-16">
 
@@ -14,23 +14,20 @@
 
                     <x-dropdown.links>
 
-                        <a href="#" class="block px-4 py-3 text-sm text-white capitalize transition-colors duration-200 transform hover:bg-gray-50 hover:bg-opacity-20 dark:hover:bg-gray-700 dark:hover:text-white">
-                            Settings
-                        </a>
+                        @forelse($loans as $loan)
 
                         <a href="#" class="block px-4 py-3 text-sm text-white capitalize transition-colors duration-200 transform hover:bg-gray-50 hover:bg-opacity-20 dark:hover:bg-gray-700 dark:hover:text-white">
-                            Keyboard shortcuts
+                            {{ $loan->name }}
                         </a>
 
-                        <hr class="border-gray-200 dark:border-gray-700 ">
+                        @empty
 
-                        <a href="#" class="block px-4 py-3 text-sm text-white capitalize transition-colors duration-200 transform hover:bg-gray-50 hover:bg-opacity-20 dark:hover:bg-gray-700 dark:hover:text-white">
-                            Company profile
-                        </a>
+                            <a href="#" class="block px-4 py-3 text-sm text-white capitalize transition-colors duration-200 transform hover:bg-gray-50 hover:bg-opacity-20 dark:hover:bg-gray-700 dark:hover:text-white">
+                                No Loans Added
+                            </a>
 
-                        <a href="#" class="block px-4 py-3 text-sm text-white capitalize transition-colors duration-200 transform hover:bg-gray-50 hover:bg-opacity-20 dark:hover:bg-gray-700 dark:hover:text-white">
-                            Team
-                        </a>
+                        @endforelse
+
 
                     </x-dropdown.links>
 
@@ -57,9 +54,10 @@
 
 {{--            </div>--}}
 
-            <div class="sm:hidden">
+            <div class="sm:hidden relative right-0 ">
 
-                <button class="p-2 text-gray-100 bg-gray-800 rounded-lg" type="button">
+                <button class="p-2 text-gray-100 hover:bg-green-500
+                hover:bg-opacity-75 rounded-lg" type="button">
 
                     <span class="sr-only">Open menu</span>
 

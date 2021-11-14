@@ -19,7 +19,7 @@ class CreateRequestLoansTable extends Migration
             $table->foreignId('loan_id')->constrained('loans','id');
             $table->boolean('status')->default(0);
             $table->date('approve_date')->nullable();
-            $table->foreignId('approved_by')->constrained('users','id');
+            $table->foreignId('approved_by')->nullable()->constrained('users','id');
         });
     }
 
