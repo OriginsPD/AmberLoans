@@ -1,6 +1,5 @@
 @props([
     'message' => false,
-    'alpName' => false,
     'status' => false
 ])
 

@@ -14,9 +14,9 @@
                           focus:ring-2
                           focus:ring-white
                           focus:ring-offset-2
-                          focus:ring-offset-gray-300';
+                          focus:ring-offset-gray-300 ';
 
-if($error){ $classes .= 'border-red-300'; }
+if($error){ $classes .= 'border-red-400'; }
 
 @endphp
 
@@ -25,7 +25,7 @@ if($error){ $classes .= 'border-red-300'; }
 
     <select {{ $attributes->merge(['class' => $classes]) }}>
 
-        <option disabled selected> {{ trans('auth.select', ['attribute' => $field]) }} </option>
+        <option selected> {{ trans('auth.select', ['attribute' => $field]) }} </option>
 
         @if($option)
 
@@ -60,7 +60,7 @@ if($error){ $classes .= 'border-red-300'; }
 
     @if($error)
 
-        <span class="text-red-900 text-xs italic  m-1">
+        <span class="text-red-500 text-xs italic  m-1">
 
             * {{ $error }}
 

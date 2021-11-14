@@ -5,8 +5,8 @@
 
 @php
 
-$classes = 'px-4 py-2 leading-5 text-white transition-colors duration-200 transform bg-'.$color.'-700
-            rounded-md hover:bg-'.$color.'-600 focus:outline-none focus:bg-'.$color.'-600'
+$classes = 'px-4 py-2 leading-5 text-white transition-colors duration-200 transform bg-'.$color.'-600
+            rounded-md hover:bg-'.$color.'-500 focus:outline-none focus:bg-'.$color.'-400'
 
 @endphp
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Admin\AdminDashboard;
+use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Home\LandingPage;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', LandingPage::class)
     ->name('index');
+
+Route::get('/Admin/Officer', Login::class)
+    ->name('login');
 
 Route::get('/Admin', AdminDashboard::class)
     ->name('Admin.dashboard');

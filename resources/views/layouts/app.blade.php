@@ -26,11 +26,27 @@
     <div class="bg-green-600 absolute bg-opacity-75 z-10 h-screen w-screen" style="height: 100vh"></div>
 
 
+    @if(!request()->routeIs('login'))
+
     @livewire('navigation.home.index-navi')
+
+    @endif
 
     @yield('content')
 
 </div>
+
+
+@if(!request()->routeIs('login'))
+
+    <div class="bg-white">
+
+        @livewire('home.product-page')
+
+    </div>
+
+@endif
+
 
 
 <!-- Footer End of Body -->

@@ -1,4 +1,5 @@
-<div class="border-b z-30 border-gray-100 sticky
+<div x-data="{ isLoans: false }"
+    class="border-b z-30 border-gray-100 sticky
       top-0 shadow bg-gray-50">
 
     <div class="flex items-center justify-between h-16 px-4 mx-auto screen-2xl sm:px-6 lg:px-8">
@@ -25,45 +26,49 @@
             </div>
 
             <nav @click.prevent="isSlide = false"
-                class="items-end absolute  right-4 mr-6 justify-end pl-8 ml-8 text-sm font-medium border-l border-gray-100 space-x-2 md:flex">
+                class="items-end absolute  right-4 mr-6 justify-end pl-8 ml-8 text-sm font-medium space-x-2 md:flex">
 
-                <div class="hidden lg:block">
+                <div class="hidden lg:block space-x-2 ">
 
                     <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
 
-                     hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 "
+                     hover:text-white border shadow hover:bg-green-400 "
+
+                       href="{{ route('Admin.dashboard') }}">
+
+                        <i class="fas fa-home text-lg"></i>
+
+                    </a>
+
+                    <a @click.prevent="isLoans = !isLoans"
+                        class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
+
+                     hover:text-white border shadow hover:bg-green-400 "
 
                        href="#">
 
-                        <i class="fas fa-search pr-1"></i>
+                        <i class="far fa-hand-holding-usd text-lg pr-2"></i>
 
-                        Search
+                        Create Loans
 
                     </a>
 
                     <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
 
-                     hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 "
+                     hover:text-white border shadow hover:bg-green-400 "
 
                        href="#">
 
-                        Profile
+                        <i class="far fa-hands-usd text-lg pr-2 "></i>
+
+                        Requests
 
                     </a>
 
-                    <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
+                    <a wire:click.prevent="logout"
+                        class="px-4 py-2 mt-2 text-sm text-white font-semibold bg-red-600 rounded-lg
 
-                     hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 "
-
-                       href="#">
-
-                        Setting
-
-                    </a>
-
-                    <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
-
-                     hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 "
+                      border shadow hover:bg-red-500 "
 
                        href="#">
 
@@ -73,7 +78,7 @@
 
                 </div>
 
-                <div class="sm:flex  md:flex lg:hidden">
+                <div class="sm:flex flex md:flex lg:hidden">
 
                     <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 " href="#">Search</a>
 
@@ -90,6 +95,18 @@
 
                         </x-link.mega>
 
+                        <x-link.mega href="{{ route('login') }}">
+                            <x-slot name="icon">
+
+                                <i class="far fa-sign-out-alt text-lg"></i>
+
+                            </x-slot>
+
+                            {{ __('Logout') }}
+
+                        </x-link.mega>
+
+
 
                     </x-dropdown.dropNavi>
 
@@ -101,6 +118,28 @@
         </div>
 
     </div>
+
+    <x-modal class="z-30" alpName="isLoans">
+
+        <div @keydown.esc.window="isLoans = false"
+             x-on:close-modal.window="isLoans = false"
+            class="flex flex-col w-full h-full overflow-auto">
+
+            <div class="w-full px-4 text-center my-4">
+
+                <h1
+                    class="text-3xl pb-2 font-extrabold text-transparent sm:text-6xl bg-clip-text
+                       bg-gradient-to-r from-green-300 via-teal-500 to-green-600 border-b-2 border-gray-300">
+                    New Loan Offers
+                </h1>
+
+            </div>
+
+            @livewire('admin.create-loans')
+
+        </div>
+
+    </x-modal>
 
 </div>
 

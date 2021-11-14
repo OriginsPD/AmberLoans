@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+
 use Livewire\Component;
 
 class AdminDashboard extends Component
@@ -11,4 +12,5 @@ class AdminDashboard extends Component
         return view('livewire.admin.admin-dashboard')
             ->extends('layouts.admin');
     }
+
 }

@@ -1,4 +1,4 @@
-<div class="absolute sticky z-40 py-2 bg-transparent  h-20">
+<div class="absolute  z-40 py-2 bg-transparent  h-20">
 
     <div class="px-4 mx-auto sm:pr-0 max-w-screen-2xl">
 
