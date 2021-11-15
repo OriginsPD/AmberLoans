@@ -1,4 +1,9 @@
-<div x-data="{ isDash: @entangle('isDash'), isRequest: @entangle('isRequest') }"
+<div x-data="{ isDash: @entangle('isDash'),
+               isRequest: @entangle('isRequest'),
+               isCustomer: @entangle('isCustomer'),
+               isSchedule: @entangle('isSchedule')
+              }"
+
      @click.prevent="isSlide = false"
      class=" relative h-auto bg-gray-300 h-auto justify-center inset-0">
 
@@ -23,7 +28,7 @@
 
                 <li class="p-2 border border-white">
 
-                    <p class="text-2xl font-extrabold text-white"> {{ $loans->count() }} </p>
+                    <p class="text-2xl font-extrabold text-white"> {{ $allCustomer }} </p>
 
                     <p class="mt-1 text-lg text-white italic font-medium">Customer</p>
 
@@ -39,9 +44,9 @@
 
                 <li class="p-2 border border-white">
 
-                    <p class="text-2xl font-extrabold text-white">10+</p>
+                    <p class="text-2xl font-extrabold text-white">{{ $allInterview }}</p>
 
-                    <p class="mt-1 text-lg text-white italic font-medium">Approved Loans</p>
+                    <p class="mt-1 text-lg text-white italic font-medium">Interviews Booked</p>
 
                 </li>
 
@@ -154,7 +159,7 @@
          x-transition.out.opacity.80.duration.300ms
          class="w-screen mx-auto mt-20 p-3">
 
-        <x-table class="w-full h-full" title="All Loans">
+        <x-table class="w-full h-full" title="Request Loan Details">
 
             <x-slot name="headerBtn">
 
@@ -258,5 +263,196 @@
 
     </div>
 
+    <div x-show="isCustomer"
+         x-transition.duration.300ms
+         x-transition.out.opacity.80.duration.300ms
+         class="w-screen mx-auto mt-20 p-3">
+
+        <x-table class="w-full h-full" title="All Customer Details">
+
+            <x-slot name="headerBtn">
+
+                <div class="flex" x-data="{ isSearch: false }">
+
+                    <div x-show="isSearch"
+                         x-transition.duration.300ms class="-mt-2">
+                        <x-input.text wire:model="search"
+                                      placeholder="Search.." class="h-8"/>
+                    </div>
+
+                    <x-table.button.top @click.prevent="isSearch = !isSearch"
+                                        class="bg-teal-500 my-2">
+
+                        Search <i class="far fa-search pl-2"></i>
+
+                    </x-table.button.top>
+
+                </div>
+
+
+            </x-slot>
+
+            <x-slot name="head">
+
+                <x-table.head> Name </x-table.head>
+
+                <x-table.head> Email </x-table.head>
+
+                <x-table.head> Contact Information </x-table.head>
+
+                <x-table.head></x-table.head>
+
+            </x-slot>
+
+            @forelse($customers as $customer)
+
+                <x-table.row>
+
+
+                    <x-table.cell class="transition duration-300 ease-in"> {{ $customer->first_nm }} {{ $customer->last_nm }} </x-table.cell>
+
+                    <x-table.cell class="text-center transition duration-300 ease-in"> {{ $customer->email }}
+                    </x-table.cell>
+
+                    <x-table.cell class="transition duration-300 ease-in">
+                        {{ $customer->contact_no }} </x-table.cell>
+
+                    <x-table.cell class="transition duration-300 ease-in">
+
+                        <x-table.button.action class="bg-green-500">
+
+                            View
+
+                        </x-table.button.action>
+
+                    </x-table.cell>
+
+                </x-table.row>
+
+            @empty
+
+                <x-table.row>
+
+                    <x-table.cell colspan="4"> No Data Found</x-table.cell>
+
+                </x-table.row>
+
+            @endforelse
+
+            <x-table.row>
+
+                <x-table.cell colspan="4" class="text-center font-semibold text-blue-600">
+
+                    <a wire:click.prevent="seeMore"
+                       href="#" class="hover:underline pb-1">
+
+                        See More
+
+                    </a>
+
+                </x-table.cell>
+
+            </x-table.row>
+
+
+        </x-table>
+
+
+    </div>
+
+    <div x-show="isSchedule"
+         x-transition.duration.300ms
+         x-transition.out.opacity.80.duration.300ms
+         class="w-screen mx-auto mt-20 p-3">
+
+        <x-table class="w-full h-full" title="Booked Interviews">
+
+            <x-slot name="headerBtn">
+
+                <div class="flex" x-data="{ isSearch: false }">
+
+                    <div x-show="isSearch"
+                         x-transition.duration.300ms class="-mt-2">
+                        <x-input.text wire:model="search"
+                                      placeholder="Search.." class="h-8"/>
+                    </div>
+
+                    <x-table.button.top @click.prevent="isSearch = !isSearch"
+                                        class="bg-teal-500 my-2">
+
+                        Search <i class="far fa-search pl-2"></i>
+
+                    </x-table.button.top>
+
+                </div>
+
+
+            </x-slot>
+
+            <x-slot name="head">
+
+                <x-table.head> Name </x-table.head>
+
+                <x-table.head> Date  </x-table.head>
+
+                <x-table.head> Time Slot </x-table.head>
+
+                <x-table.head></x-table.head>
+
+            </x-slot>
+
+            @forelse($schedules as $schedule)
+
+                <x-table.row>
+
+
+                    <x-table.cell class="transition duration-300 ease-in"> {{ $schedule->customer->first_nm }} {{ $schedule->customer->last_nm }} </x-table.cell>
+
+                    <x-table.cell > {{ $schedule->set_date }} </x-table.cell>
+
+                    <x-table.cell class="transition duration-300 ease-in"> {{ $schedule->time_slot }} </x-table.cell>
+
+                    <x-table.cell class="transition duration-300 ease-in">
+
+                        <x-table.button.action class="bg-green-500">
+
+                            View
+
+                        </x-table.button.action>
+
+                    </x-table.cell>
+
+                </x-table.row>
+
+            @empty
+
+                <x-table.row>
+
+                    <x-table.cell colspan="4"> No Data Found</x-table.cell>
+
+                </x-table.row>
+
+            @endforelse
+
+            <x-table.row>
+
+                <x-table.cell colspan="4" class="text-center font-semibold text-blue-600">
+
+                    <a wire:click.prevent="seeMore"
+                       href="#" class="hover:underline pb-1">
+
+                        See More
+
+                    </a>
+
+                </x-table.cell>
+
+            </x-table.row>
+
+
+        </x-table>
+
+
+    </div>
 
 </div>

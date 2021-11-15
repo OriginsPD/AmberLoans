@@ -3,6 +3,8 @@
     class="border-b z-30 border-gray-100 sticky
       top-0 shadow bg-gray-50">
 
+    <x-alerts :message="session()->get('success')"/>
+
     <div class="flex items-center justify-between h-16 px-4 mx-auto screen-2xl sm:px-6 lg:px-8">
 
         <div class="flex items-center justify-between space-x-4">

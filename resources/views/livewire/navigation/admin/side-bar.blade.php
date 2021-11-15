@@ -17,7 +17,7 @@
 
             </x-link.side>
 
-            <x-link.side>
+            <x-link.side wire:click.prevent="$emit('show-customer')">
 
                 {{ __('Customers') }}
 
@@ -35,7 +35,7 @@
                     {{ __('Loan Request Information') }}
                 </x-link.side>
 
-                <x-link.side>
+                <x-link.side wire:click.prevent="$emit('show-schedule')">
 
                     {{ __('Schedule Appointments') }}
                 </x-link.side>

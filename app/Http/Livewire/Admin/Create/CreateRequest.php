@@ -33,12 +33,12 @@ class CreateRequest extends Component
 
             $this->appointment->save();
 
-            RequestLoan::where('id',$this->appointment->customer_id)
-                ->update([
-                    'status' => 1,
-                    'approve_date' => now(),
-                    'approved_by' => auth()->id(),
-                ]);
+//            RequestLoan::where('id',$this->appointment->customer_id)
+//                ->update([
+//                    'status' => 1,
+//                    'approve_date' => now(),
+//                    'approved_by' => auth()->id(),
+//                ]);
 
             $sendAppointmentMail->execute($this->appointment);
 
