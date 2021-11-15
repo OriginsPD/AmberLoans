@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 
+use App\Action\Mail\SendAppointmentMail;
 use App\Models\Appointment;
 use App\Models\Customer;
 use App\Models\Loan;
@@ -22,10 +23,8 @@ class AdminDashboard extends Component
     public bool $isCustomer = false;
     public bool $isSchedule = false;
 
-    public $selected = '';
-
     public int $paginator = 4;
-    public $search = '';
+    public string $search = '';
 
     protected $listeners = [
         'refresh' => 'render',
@@ -35,14 +34,6 @@ class AdminDashboard extends Component
         'show-schedule' => 'showSchedule'
 
     ];
-
-    public function reSchedule($scheduleID): void
-    {
-//        dd($scheduleID);
-        $this->selected = $scheduleID;
-        $this->dispatchBrowserEvent('schedule-update');
-
-    }
 
     public function seeMore(): void
     {

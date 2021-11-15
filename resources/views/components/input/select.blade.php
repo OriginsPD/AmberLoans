@@ -25,7 +25,7 @@ if($error){ $classes .= 'border-red-400'; }
 
     <select {{ $attributes->merge(['class' => $classes]) }}>
 
-        <option selected> {{ trans('auth.select', ['attribute' => $field]) }} </option>
+        <option selected disabled> {{ trans('auth.select', ['attribute' => $field]) }} </option>
 
         @if($option)
 

@@ -1,6 +1,6 @@
-<div x-data="{ isLoans: false, isRequest: false }"
-     x-on:close-modal.window="isLoans = false; isRequest = false"
-    class="border-b z-30 border-gray-100 sticky
+<div x-data="{ isLoans: false, isRequest: false, updateSchedule: false }"
+     x-on:close-modal.window="isLoans = false; isRequest = false; updateSchedule = false"
+     class="border-b z-30 border-gray-100 sticky
       top-0 shadow bg-gray-50">
 
     <x-alerts :message="session()->get('success')"/>
@@ -29,12 +29,12 @@
             </div>
 
             <nav @click.prevent="isSlide = false"
-                class="items-end absolute  right-4 mr-6 justify-end pl-8 ml-8 text-sm font-medium space-x-2 md:flex">
+                 class="items-end absolute  right-4 mr-6 justify-end pl-8 ml-8 text-sm font-medium space-x-2 md:flex">
 
                 <div class="hidden lg:block space-x-2 ">
 
                     <a wire:click.prevent="$emit('home')"
-                        class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
+                       class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
 
                      hover:text-white border shadow hover:bg-green-400 "
 
@@ -45,7 +45,7 @@
                     </a>
 
                     <a @click.prevent="isLoans = !isLoans"
-                        class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
+                       class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
 
                      hover:text-white border shadow hover:bg-green-400 "
 
@@ -58,7 +58,7 @@
                     </a>
 
                     <a @click.prevent="isRequest = !isRequest"
-                        class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
+                       class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
 
                      hover:text-white border shadow hover:bg-green-400 "
 
@@ -70,8 +70,21 @@
 
                     </a>
 
+                    <a @click.prevent="updateSchedule = !updateSchedule"
+                       class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
+
+                     hover:text-white border shadow hover:bg-green-400 "
+
+                       href="#">
+
+                        <i class="far fa-calendar-alt text-lg pr-2"></i>
+
+                        Update Appointment
+
+                    </a>
+
                     <a wire:click.prevent="logout"
-                        class="px-4 py-2 mt-2 text-sm text-white font-semibold bg-red-600 rounded-lg
+                       class="px-4 py-2 mt-2 text-sm text-white font-semibold bg-red-600 rounded-lg
 
                       border shadow hover:bg-red-500 "
 
@@ -85,7 +98,8 @@
 
                 <div class="sm:flex flex md:flex lg:hidden">
 
-                    <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 " href="#">Search</a>
+                    <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 "
+                       href="#">Search</a>
 
                     <x-dropdown.dropNavi title="Links">
 
@@ -112,7 +126,6 @@
                         </x-link.mega>
 
 
-
                     </x-dropdown.dropNavi>
 
 
@@ -128,7 +141,7 @@
 
         <div @keydown.esc.window="isLoans = false"
              x-on:close-modal.window="isLoans = false"
-            class="flex flex-col w-full h-full overflow-auto">
+             class="flex flex-col w-full h-full overflow-auto">
 
             <div class="w-full px-4 text-center my-4">
 
@@ -168,6 +181,27 @@
 
     </x-modal>
 
+    <x-modal alpName="updateSchedule" class="z-30">
+
+        <div @keydown.esc.window="updateSchedule = false"
+             x-on:close-modal.window="updateSchedule = false"
+             class="flex flex-col w-full h-full overflow-auto">
+
+            <div class="w-full px-4 text-center my-4">
+
+                <h1
+                    class="text-3xl pb-4 font-extrabold italic text-transparent sm:text-6xl bg-clip-text
+                       bg-gradient-to-r from-green-300 via-teal-500 to-green-600 border-b-2 border-gray-300">
+                    Update Interview Appointment
+                </h1>
+
+            </div>
+
+            @livewire('admin.create.reschedule')
+
+        </div>
+
+    </x-modal>
 
 </div>
 

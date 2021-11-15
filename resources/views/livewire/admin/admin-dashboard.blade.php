@@ -390,7 +390,7 @@
          x-transition.out.opacity.80.duration.300ms
          class="w-screen mx-auto mt-2 p-3">
 
-        <div x-data="{ updateSchedule: false }"
+        <div x-data="{  }"
              x-on:schedule-update.window="updateSchedule = true"
 
              class="w-full">
@@ -429,7 +429,6 @@
 
                     <x-table.head> Status</x-table.head>
 
-                    <x-table.head></x-table.head>
 
                 </x-slot>
 
@@ -479,23 +478,6 @@
 
                         </x-table.cell>
 
-                        @if(!$schedule->status)
-
-                            <x-table.cell class="transition duration-300 ease-in">
-
-                                <x-table.button.action wire:click="$set('selected',{{ $schedule->id }})"
-                                                       @click.prevent="updateSchedule = !updateSchedule"
-                                                       class="bg-green-500">
-
-                                    Update
-
-                                </x-table.button.action>
-
-                            </x-table.cell>
-
-
-                        @endif
-
                     </x-table.row>
 
                 @empty
@@ -525,38 +507,6 @@
 
 
             </x-table>
-
-
-            {{ $selected }}
-
-
-            <x-modal alpName="updateSchedule"
-                     @keydown.esc.window="updateSchedule = false"
-                     class="flex z-30 bg-white ">
-
-
-                <div
-                    x-on:close-modal.window="updateSchedule = false"
-                    class="flex flex-col w-full h-full overflow-auto">
-
-                    <div class="w-full px-4 text-center my-4">
-
-                        <h1
-                            class="text-3xl pb-4 font-extrabold italic text-transparent sm:text-6xl bg-clip-text
-                       bg-gradient-to-r from-green-300 via-teal-500 to-green-600 border-b-2 border-gray-300">
-                            Update Interview Appointment
-                        </h1>
-
-                    </div>
-
-                    {{ $selected }}
-
-                    @livewire('admin.create.reschedule',['selected' => $selected])
-
-                </div>
-
-
-            </x-modal>
 
         </div>
 
