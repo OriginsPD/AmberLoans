@@ -15,11 +15,11 @@ class CreateRequestLoansTable extends Migration
     {
         Schema::create('request_loans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('customers','id');
-            $table->foreignId('loan_id')->constrained('loans','id');
+            $table->foreignId('customer_id')->constrained('customers')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('loan_id')->constrained('loans')->cascadeOnUpdate()->cascadeOnDelete();
             $table->boolean('status')->default(0);
             $table->date('approve_date')->nullable();
-            $table->foreignId('approved_by')->nullable()->constrained('users','id');
+            $table->foreignId('approved_by')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Create;
 
 use App\Models\Loan;
 use Livewire\Component;
@@ -48,6 +48,6 @@ class CreateLoans extends Component
 
     public function render()
     {
-        return view('livewire.admin.create-loans');
+        return view('livewire.admin.create.create-loans');
     }
 }

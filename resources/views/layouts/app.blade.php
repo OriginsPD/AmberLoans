@@ -23,7 +23,7 @@
     style="background-image: url(https://cdn.pixabay.com/photo/2016/08/19/10/20/money-1604921_960_720.jpg); height: 100vh "
     role="banner">
 
-    <div class="bg-green-600 absolute bg-opacity-75 z-10 h-screen w-screen" style="height: 100vh"></div>
+    <div class="bg-green-600 absolute bg-opacity-75  h-screen w-screen" style="height: 100vh"></div>
 
 
     @if(!request()->routeIs('login'))
@@ -51,6 +51,7 @@
 
 <!-- Footer End of Body -->
 @livewireScripts
+<script defer src="https://unpkg.com/@alpinejs/trap@3.x.x/dist/cdn.min.js"></script>
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>

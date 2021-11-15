@@ -22,5 +22,9 @@ Route::get('/', LandingPage::class)
 Route::get('/Admin/Officer', Login::class)
     ->name('login');
 
-Route::get('/Admin', AdminDashboard::class)
-    ->name('Admin.dashboard');
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/Admin', AdminDashboard::class)
+        ->name('Admin.dashboard');
+
+});

@@ -1,10 +1,11 @@
-<div x-data="{ isBook: false, customer: true, isSlide: @entangle('slide'), newCustomer: @entangle('newCustomer') ,member: @entangle('member')  }"
-     x-on:close-modal.window="isBook = false; customer = true; isSlide = false"
-     class="absolute inset-x-0 z-30 bottom-0 ">
+<div
+    x-data="{ isBook: false, customer: true, isSlide: @entangle('slide'), newCustomer: @entangle('newCustomer') ,member: @entangle('member')  }"
+    x-on:close-modal.window="isBook = false; customer = true; isSlide = false"
+    class="absolute inset-x-0  bottom-0 ">
 
-    <x-alerts :status="session('status')" :message="session('success')" />
+    <x-alerts :status="session('status')" :message="session('success')"/>
 
-    <div class="px-4 py-12 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
+    <div class="px-4 py-12 mx-auto screen sm:px-6 lg:px-8">
 
         <div class="w-full flex flex-col">
 
@@ -30,6 +31,8 @@
                     <span class="relative text-sm font-medium tracking-widest uppercase">
                             Book Appointment
 
+                        <i class="fas fa-calendar-alt text-lg pl-2"></i>
+
                          </span>
 
                 </a>
@@ -44,7 +47,7 @@
              class="bg-green-600 flex bg-opacity-75 z-50">
 
         <button @click="isBook = false; customer = true; isSlide = false"
-            class="absolute top-0 right-0 px-2 m-1 py-1 hover:bg-gray-600 hover:bg-opacity-60 text-white" >
+                class="absolute top-0 right-0 px-2 m-1 py-1 hover:bg-gray-600 hover:bg-opacity-60 text-white">
 
             <i class="fas fa-times text-white text-lg"></i>
 

@@ -1,4 +1,5 @@
-<div x-data="{ isLoans: false }"
+<div x-data="{ isLoans: false, isRequest: false }"
+     x-on:close-modal.window="isLoans = false; isRequest = false"
     class="border-b z-30 border-gray-100 sticky
       top-0 shadow bg-gray-50">
 
@@ -30,7 +31,8 @@
 
                 <div class="hidden lg:block space-x-2 ">
 
-                    <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
+                    <a wire:click.prevent="$emit('home')"
+                        class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
 
                      hover:text-white border shadow hover:bg-green-400 "
 
@@ -53,7 +55,8 @@
 
                     </a>
 
-                    <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
+                    <a @click.prevent="isRequest = !isRequest"
+                        class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
 
                      hover:text-white border shadow hover:bg-green-400 "
 
@@ -135,11 +138,34 @@
 
             </div>
 
-            @livewire('admin.create-loans')
+            @livewire('admin.create.create-loans')
 
         </div>
 
     </x-modal>
+
+    <x-modal class="z-30" alpName="isRequest">
+
+        <div @keydown.esc.window="isRequest = false"
+             x-on:close-modal.window="isRequest = false"
+             class="flex flex-col w-full h-full overflow-auto">
+
+            <div class="w-full px-4 text-center my-4">
+
+                <h1
+                    class="text-3xl pb-2 font-extrabold text-transparent sm:text-6xl bg-clip-text
+                       bg-gradient-to-r from-green-300 via-teal-500 to-green-600 border-b-2 border-gray-300">
+                    Plan Interviews
+                </h1>
+
+            </div>
+
+            @livewire('admin.create.create-request')
+
+        </div>
+
+    </x-modal>
+
 
 </div>
 
