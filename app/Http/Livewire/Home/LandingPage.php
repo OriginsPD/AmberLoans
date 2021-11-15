@@ -14,7 +14,9 @@ class LandingPage extends Component
     public bool $member = false;
     public bool $slide = false;
 
-    protected $listeners = ['reset' => 'resetSlide'];
+    protected $listeners = [
+        'reset' => 'resetSlide',
+        'refresh' => 'render'];
 
     public function newCustomer(): void
     {

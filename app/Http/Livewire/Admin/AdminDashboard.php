@@ -26,6 +26,7 @@ class AdminDashboard extends Component
     public $search = '';
 
     protected $listeners = [
+        'refresh' => 'render',
         'home' => 'home',
         'show-loans-request' => 'showRequest',
         'show-customer' => 'showCustomer',
@@ -50,8 +51,9 @@ class AdminDashboard extends Component
     {
         $this->isDash = false;
         $this->isCustomer = false;
+        $this->isSchedule = false;
         $this->isRequest = true;
-        $this->isSchedule = true;
+
     }
 
     public function showCustomer(): void

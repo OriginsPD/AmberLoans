@@ -31,9 +31,9 @@ class CreateLoans extends Component
         session()->put('success', $this->loan->name.' Created Successfully');
 
 
-
-
         $this->loan = new Loan;
+
+        $this->emit('refresh');
     }
 
     public function updated(): void

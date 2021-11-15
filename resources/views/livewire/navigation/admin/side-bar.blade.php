@@ -11,11 +11,11 @@
 
         <nav class="flex-grow md:block mt-8 px-4 pb-4 md:pb-0 md:overflow-y-auto">
 
-            <x-link.side>
+{{--            <x-link.side>--}}
 
-                {{ __('Dashboard') }}
+{{--                {{ __('Dashboard') }}--}}
 
-            </x-link.side>
+{{--            </x-link.side>--}}
 
             <x-link.side wire:click.prevent="$emit('show-customer')">
 

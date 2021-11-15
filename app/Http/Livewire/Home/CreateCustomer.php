@@ -39,6 +39,9 @@ class CreateCustomer extends Component
         session()->put('success','Request Made Response will Be Sent Soon');
 
         $this->customer = new Customer;
+
+        $this->emit('refresh');
+
     }
 
     public function updated(): void
