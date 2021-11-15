@@ -35,6 +35,7 @@ class Appointment extends Model
         'customer_id',
         'set_date',
         'time_slot',
+        'status',
     ];
 
     public function customer(): BelongsTo

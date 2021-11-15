@@ -18,6 +18,7 @@ class CreateAppointmentsTable extends Migration
             $table->foreignId('customer_id')->constrained('customers')->cascadeOnUpdate()->cascadeOnDelete();
             $table->date('set_date');
             $table->string('time_slot');
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

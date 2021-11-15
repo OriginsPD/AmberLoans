@@ -16,7 +16,7 @@
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
     @livewireStyles
 </head>
-<body class="h-screen antialiased leading-none font-sans">
+<body class="h-screen antialiased bg-gray-300 leading-none font-sans">
 
 <div @click.away="isSlide = false" x-data="{ isSlide: false }" >
 

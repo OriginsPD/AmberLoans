@@ -5,7 +5,7 @@
               }"
 
      @click.prevent="isSlide = false"
-     class=" relative h-auto bg-gray-300 h-auto justify-center inset-0">
+     class=" h-auto justify-center inset-0">
 
     <x-alerts :message="session()->get('success')"/>
 
@@ -60,7 +60,7 @@
     <div x-show="isDash"
          x-transition.duration.300ms
          x-transition.out.opacity.80.duration.300ms
-         class="w-screen mx-auto mt-20 p-3">
+         class="w-screen mx-auto mt-2 p-3">
 
         <x-table class="w-full h-full" title="All Loans">
 
@@ -105,7 +105,7 @@
 
                     <x-table.cell class="transition duration-300 ease-in"> {{ $loan->name }} </x-table.cell>
 
-                    <x-table.cell class="text-center transition duration-300 ease-in"> {{ $loan->loan_percentage }}%
+                    <x-table.cell class="transition duration-300 ease-in"> {{ $loan->loan_percentage }}%
                     </x-table.cell>
 
                     <x-table.cell class="transition duration-300 ease-in">
@@ -157,7 +157,7 @@
     <div x-show="isRequest"
          x-transition.duration.300ms
          x-transition.out.opacity.80.duration.300ms
-         class="w-screen mx-auto mt-20 p-3">
+         class="w-screen mx-auto mt-2 p-3">
 
         <x-table class="w-full h-full" title="Request Loan Details">
 
@@ -189,11 +189,11 @@
 
                 <x-table.head> Loan Name</x-table.head>
 
-                <x-table.head> Status </x-table.head>
+                <x-table.head> Status</x-table.head>
 
-                <x-table.head> Approved Date </x-table.head>
+                <x-table.head> Approved Date</x-table.head>
 
-                <x-table.head> Approved By </x-table.head>
+                <x-table.head> Approved By</x-table.head>
 
                 <x-table.head></x-table.head>
 
@@ -204,19 +204,43 @@
                 <x-table.row>
 
 
-                    <x-table.cell class="transition duration-300 ease-in"> {{ $requestLoan->customer->first_nm }} {{ $requestLoan->customer->last_nm }} </x-table.cell>
+                    <x-table.cell
+                        class="transition duration-300 ease-in"> {{ $requestLoan->customer->first_nm }} {{ $requestLoan->customer->last_nm }} </x-table.cell>
 
-                    <x-table.cell class="transition duration-300 ease-in"> {{ $requestLoan->loan->name }} </x-table.cell>
-
-                    <x-table.cell class="text-center transition duration-300 ease-in"> {{ ($requestLoan->status === 0) ? 'Pending' : 'Accepted' }}
-                    </x-table.cell>
-
-                    <x-table.cell class="transition duration-300 ease-in">
-                        {{ $requestLoan->approve_date }}
-                    </x-table.cell>
+                    <x-table.cell
+                        class="transition duration-300 ease-in"> {{ $requestLoan->loan->name }} </x-table.cell>
 
                     <x-table.cell class="transition duration-300 ease-in">
-                        {{ $requestLoan->approved_by }}
+
+                        @if($requestLoan->status === 0)
+
+                            <strong
+                                class="inline-flex items-center px-3 py-1 text-xs font-semibold text-white uppercase bg-orange-600 rounded-full">
+
+                                Pending
+
+                            </strong>
+
+                        @else
+
+                            <strong
+                                class="inline-flex items-center px-3 py-1 text-xs font-semibold text-white uppercase bg-green-600 rounded-full">
+
+                                Accepted
+
+                            </strong>
+
+                        @endif
+
+
+                    </x-table.cell>
+
+                    <x-table.cell class="transition italic duration-300 ease-in">
+                        {{ ($requestLoan->approve_date) ?? 'To Be Approved'}}
+                    </x-table.cell>
+
+                    <x-table.cell class="transition italic duration-300 ease-in">
+                        {{ ($requestLoan->approved_by) ?? 'To Be Approved' }}
                     </x-table.cell>
 
 
@@ -244,7 +268,7 @@
 
             <x-table.row>
 
-                <x-table.cell colspan="4" class="text-center font-semibold text-blue-600">
+                <x-table.cell colspan="6" class="text-center font-semibold text-blue-600">
 
                     <a wire:click.prevent="seeMore"
                        href="#" class="hover:underline pb-1">
@@ -266,7 +290,7 @@
     <div x-show="isCustomer"
          x-transition.duration.300ms
          x-transition.out.opacity.80.duration.300ms
-         class="w-screen mx-auto mt-20 p-3">
+         class="w-screen mx-auto mt-2 p-3">
 
         <x-table class="w-full h-full" title="All Customer Details">
 
@@ -294,11 +318,11 @@
 
             <x-slot name="head">
 
-                <x-table.head> Name </x-table.head>
+                <x-table.head> Name</x-table.head>
 
-                <x-table.head> Email </x-table.head>
+                <x-table.head> Email</x-table.head>
 
-                <x-table.head> Contact Information </x-table.head>
+                <x-table.head> Contact Information</x-table.head>
 
                 <x-table.head></x-table.head>
 
@@ -309,9 +333,10 @@
                 <x-table.row>
 
 
-                    <x-table.cell class="transition duration-300 ease-in"> {{ $customer->first_nm }} {{ $customer->last_nm }} </x-table.cell>
+                    <x-table.cell
+                        class="transition duration-300 ease-in"> {{ $customer->first_nm }} {{ $customer->last_nm }} </x-table.cell>
 
-                    <x-table.cell class="text-center transition duration-300 ease-in"> {{ $customer->email }}
+                    <x-table.cell class="transition duration-300 ease-in"> {{ $customer->email }}
                     </x-table.cell>
 
                     <x-table.cell class="transition duration-300 ease-in">
@@ -363,95 +388,177 @@
     <div x-show="isSchedule"
          x-transition.duration.300ms
          x-transition.out.opacity.80.duration.300ms
-         class="w-screen mx-auto mt-20 p-3">
+         class="w-screen mx-auto mt-2 p-3">
 
-        <x-table class="w-full h-full" title="Booked Interviews">
+        <div x-data="{ updateSchedule: false }"
+             x-on:schedule-update.window="updateSchedule = true"
 
-            <x-slot name="headerBtn">
+             class="w-full">
 
-                <div class="flex" x-data="{ isSearch: false }">
+            <x-table class="w-full h-full" title="Booked Interviews">
 
-                    <div x-show="isSearch"
-                         x-transition.duration.300ms class="-mt-2">
-                        <x-input.text wire:model="search"
-                                      placeholder="Search.." class="h-8"/>
+                <x-slot name="headerBtn">
+
+                    <div class="flex" x-data="{ isSearch: false }">
+
+                        <div x-show="isSearch"
+                             x-transition.duration.300ms class="-mt-2">
+                            <x-input.text wire:model="search"
+                                          placeholder="Search.." class="h-8"/>
+                        </div>
+
+                        <x-table.button.top @click.prevent="isSearch = !isSearch"
+                                            class="bg-teal-500 my-2">
+
+                            Search <i class="far fa-search pl-2"></i>
+
+                        </x-table.button.top>
+
                     </div>
 
-                    <x-table.button.top @click.prevent="isSearch = !isSearch"
-                                        class="bg-teal-500 my-2">
 
-                        Search <i class="far fa-search pl-2"></i>
+                </x-slot>
 
-                    </x-table.button.top>
+                <x-slot name="head">
 
-                </div>
+                    <x-table.head> Name</x-table.head>
+
+                    <x-table.head> Date</x-table.head>
+
+                    <x-table.head> Time Slot</x-table.head>
+
+                    <x-table.head> Status</x-table.head>
+
+                    <x-table.head></x-table.head>
+
+                </x-slot>
+
+                @forelse($schedules as $schedule)
+
+                    <x-table.row>
+
+                        <x-table.cell
+                            class="transition duration-300 ease-in"> {{ $schedule->customer->first_nm }} {{ $schedule->customer->last_nm }} </x-table.cell>
+
+                        <x-table.cell> {{ $schedule->set_date }} </x-table.cell>
+
+                        <x-table.cell
+                            class="transition duration-300 ease-in"> {{ $schedule->time_slot }} </x-table.cell>
+
+                        <x-table.cell
+                            class="transition duration-300 ease-in">
+
+                            @if($schedule->status === null)
+
+                                <strong
+                                    class="inline-flex items-center px-3 py-1 text-xs font-semibold text-white uppercase bg-orange-600 rounded-full">
+
+                                    Pending
+
+                                </strong>
+
+                            @elseif($schedule->status === 0)
+
+                                <strong
+                                    class="inline-flex items-center px-3 py-1 text-xs font-semibold text-white uppercase bg-blue-600 rounded-full">
+
+                                    Reschedule
+
+                                </strong>
+
+                            @else
+
+                                <strong
+                                    class="inline-flex items-center px-3 py-1 text-xs font-semibold text-white uppercase bg-green-600 rounded-full">
+
+                                    Attended
+
+                                </strong>
+
+                            @endif
+
+                        </x-table.cell>
+
+                        @if(!$schedule->status)
+
+                            <x-table.cell class="transition duration-300 ease-in">
+
+                                <x-table.button.action wire:click="$set('selected',{{ $schedule->id }})"
+                                                       @click.prevent="updateSchedule = !updateSchedule"
+                                                       class="bg-green-500">
+
+                                    Update
+
+                                </x-table.button.action>
+
+                            </x-table.cell>
 
 
-            </x-slot>
+                        @endif
 
-            <x-slot name="head">
+                    </x-table.row>
 
-                <x-table.head> Name </x-table.head>
+                @empty
 
-                <x-table.head> Date  </x-table.head>
+                    <x-table.row>
 
-                <x-table.head> Time Slot </x-table.head>
+                        <x-table.cell colspan="5"> No Data Found</x-table.cell>
 
-                <x-table.head></x-table.head>
+                    </x-table.row>
 
-            </x-slot>
-
-            @forelse($schedules as $schedule)
+                @endforelse
 
                 <x-table.row>
 
+                    <x-table.cell colspan="5" class="text-center font-semibold text-blue-600">
 
-                    <x-table.cell class="transition duration-300 ease-in"> {{ $schedule->customer->first_nm }} {{ $schedule->customer->last_nm }} </x-table.cell>
+                        <a wire:click.prevent="seeMore"
+                           href="#" class="hover:underline pb-1">
 
-                    <x-table.cell > {{ $schedule->set_date }} </x-table.cell>
+                            See More
 
-                    <x-table.cell class="transition duration-300 ease-in"> {{ $schedule->time_slot }} </x-table.cell>
-
-                    <x-table.cell class="transition duration-300 ease-in">
-
-                        <x-table.button.action class="bg-green-500">
-
-                            View
-
-                        </x-table.button.action>
+                        </a>
 
                     </x-table.cell>
 
                 </x-table.row>
 
-            @empty
 
-                <x-table.row>
-
-                    <x-table.cell colspan="4"> No Data Found</x-table.cell>
-
-                </x-table.row>
-
-            @endforelse
-
-            <x-table.row>
-
-                <x-table.cell colspan="4" class="text-center font-semibold text-blue-600">
-
-                    <a wire:click.prevent="seeMore"
-                       href="#" class="hover:underline pb-1">
-
-                        See More
-
-                    </a>
-
-                </x-table.cell>
-
-            </x-table.row>
+            </x-table>
 
 
-        </x-table>
+            {{ $selected }}
 
+
+            <x-modal alpName="updateSchedule"
+                     @keydown.esc.window="updateSchedule = false"
+                     class="flex z-30 bg-white ">
+
+
+                <div
+                    x-on:close-modal.window="updateSchedule = false"
+                    class="flex flex-col w-full h-full overflow-auto">
+
+                    <div class="w-full px-4 text-center my-4">
+
+                        <h1
+                            class="text-3xl pb-4 font-extrabold italic text-transparent sm:text-6xl bg-clip-text
+                       bg-gradient-to-r from-green-300 via-teal-500 to-green-600 border-b-2 border-gray-300">
+                            Update Interview Appointment
+                        </h1>
+
+                    </div>
+
+                    {{ $selected }}
+
+                    @livewire('admin.create.reschedule',['selected' => $selected])
+
+                </div>
+
+
+            </x-modal>
+
+        </div>
 
     </div>
 

@@ -22,6 +22,8 @@ class AdminDashboard extends Component
     public bool $isCustomer = false;
     public bool $isSchedule = false;
 
+    public $selected = '';
+
     public int $paginator = 4;
     public $search = '';
 
@@ -33,6 +35,14 @@ class AdminDashboard extends Component
         'show-schedule' => 'showSchedule'
 
     ];
+
+    public function reSchedule($scheduleID): void
+    {
+//        dd($scheduleID);
+        $this->selected = $scheduleID;
+        $this->dispatchBrowserEvent('schedule-update');
+
+    }
 
     public function seeMore(): void
     {
@@ -76,7 +86,6 @@ class AdminDashboard extends Component
     {
         $this->resetPage();
     }
-
 
     public function render(): Factory|View|Application
     {
