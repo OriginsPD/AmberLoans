@@ -1,4 +1,5 @@
 <div x-data="{ isDash: @entangle('isDash'),
+               isActive: @entangle('isActive'),
                isRequest: @entangle('isRequest'),
                isCustomer: @entangle('isCustomer'),
                isSchedule: @entangle('isSchedule')
@@ -126,6 +127,85 @@
             <x-table.row>
 
                 <x-table.cell colspan="4" class="text-center font-semibold text-blue-600">
+
+                    <a wire:click.prevent="seeMore"
+                       href="#" class="hover:underline pb-1">
+
+                        See More
+
+                    </a>
+
+                </x-table.cell>
+
+            </x-table.row>
+
+
+        </x-table>
+
+
+    </div>
+
+    <div x-show="isActive"
+         x-transition.duration.300ms
+         x-transition.out.opacity.80.duration.300ms
+         class="w-screen mx-auto mt-2 p-3">
+
+        <x-table class="w-full h-full" title="Active Loan Details">
+
+            <x-slot name="headerBtn">
+
+
+            </x-slot>
+
+            <x-slot name="head">
+
+                <x-table.head> Username</x-table.head>
+
+                <x-table.head> Loan Name</x-table.head>
+
+                <x-table.head> Loan Amount Borrowed</x-table.head>
+
+                <x-table.head> Month Payments</x-table.head>
+
+
+
+            </x-slot>
+
+            @forelse($activeLoans as $activeLoan)
+
+                <x-table.row>
+
+
+                    <x-table.cell
+                        class="transition duration-300 ease-in"> {{ $activeLoan->requestLoan->customer->first_nm }} {{ $activeLoan->requestLoan->customer->last_nm }} </x-table.cell>
+
+                    <x-table.cell
+                        class="transition duration-300 ease-in"> {{ $activeLoan->requestLoan->loan->name }} </x-table.cell>
+
+                    <x-table.cell class="transition italic duration-300 ease-in">
+                       $ {{ number_format($activeLoan->loan,2) }}
+                    </x-table.cell>
+
+                    <x-table.cell class="transition italic duration-300 ease-in">
+                       $ {{ number_format($activeLoan->payment_amount,2) }}
+                    </x-table.cell>
+
+
+                </x-table.row>
+
+            @empty
+
+                <x-table.row>
+
+                    <x-table.cell colspan="6"> No Data Found</x-table.cell>
+
+                </x-table.row>
+
+            @endforelse
+
+            <x-table.row>
+
+                <x-table.cell colspan="6" class="text-center font-semibold text-blue-600">
 
                     <a wire:click.prevent="seeMore"
                        href="#" class="hover:underline pb-1">

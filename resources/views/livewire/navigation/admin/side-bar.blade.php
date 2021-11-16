@@ -25,7 +25,7 @@
 
             <x-dropdown title="Loans Details">
 
-                <x-link.side>
+                <x-link.side wire:click.prevent="$emit('show-active-loans')">
 
                     {{ __('View Active Loans') }}
                 </x-link.side>

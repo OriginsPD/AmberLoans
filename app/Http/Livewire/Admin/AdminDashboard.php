@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 
 use App\Action\Mail\SendAppointmentMail;
+use App\Models\ActiveLoan;
 use App\Models\Appointment;
 use App\Models\Customer;
 use App\Models\Loan;
@@ -19,6 +20,7 @@ class AdminDashboard extends Component
     use WithPagination;
 
     public bool $isDash = true;
+    public bool $isActive = false;
     public bool $isRequest = false;
     public bool $isCustomer = false;
     public bool $isSchedule = false;
@@ -29,6 +31,7 @@ class AdminDashboard extends Component
     protected $listeners = [
         'refresh' => 'render',
         'home' => 'home',
+        'show-active-loans' => 'showActive',
         'show-loans-request' => 'showRequest',
         'show-customer' => 'showCustomer',
         'show-schedule' => 'showSchedule'
@@ -46,6 +49,17 @@ class AdminDashboard extends Component
         $this->isRequest = false;
         $this->isCustomer = false;
         $this->isSchedule = false;
+        $this->isActive = false;
+    }
+
+    public function showActive(): void
+    {
+        $this->isDash = false;
+        $this->isCustomer = false;
+        $this->isSchedule = false;
+        $this->isRequest = false;
+        $this->isActive = true;
+
     }
 
     public function showRequest(): void
@@ -53,6 +67,7 @@ class AdminDashboard extends Component
         $this->isDash = false;
         $this->isCustomer = false;
         $this->isSchedule = false;
+        $this->isActive = false;
         $this->isRequest = true;
 
     }
@@ -62,6 +77,7 @@ class AdminDashboard extends Component
         $this->isDash = false;
         $this->isRequest = false;
         $this->isSchedule = false;
+        $this->isActive = false;
         $this->isCustomer = true;
     }
 
@@ -70,6 +86,7 @@ class AdminDashboard extends Component
         $this->isDash = false;
         $this->isRequest = false;
         $this->isCustomer = false;
+        $this->isActive = false;
         $this->isSchedule = true;
     }
 
@@ -101,6 +118,8 @@ class AdminDashboard extends Component
                 $query->where('first_nm', 'like', '%' . $this->search . '%');
                 $query->orWhere('last_nm', 'like', '%' . $this->search . '%');
             })->paginate($this->paginator),
+
+            'activeLoans' => ActiveLoan::with('requestLoan')->get(),
 
             'allLoans' => Loan::all()->count(),
 

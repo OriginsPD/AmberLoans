@@ -37,7 +37,7 @@ class ActiveLoan extends Model
 
     public function requestLoan(): BelongsTo
     {
-        return $this->belongsTo(RequestLoan::class, 'request_id');
+        return $this->belongsTo(RequestLoan::class, 'request_id')->with('loan','customer');
     }
 
 }
