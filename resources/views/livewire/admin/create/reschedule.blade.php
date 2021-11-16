@@ -73,7 +73,7 @@
 
             </x-input.submit>
 
-            <x-input.submit color="green" type="submit">
+            <x-input.submit color="blue" type="submit">
 
                 <span wire:loading.delay wire:loading.class="animate-spin">
 

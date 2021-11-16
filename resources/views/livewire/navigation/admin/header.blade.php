@@ -1,5 +1,5 @@
-<div x-data="{ isLoans: false, isRequest: false, updateSchedule: false }"
-     x-on:close-modal.window="isLoans = false; isRequest = false; updateSchedule = false"
+<div x-data="{ isLoans: false, isRequest: false, updateSchedule: false, isReview: false }"
+     x-on:close-modal.window="isLoans = false; isRequest = false; updateSchedule = false; isReview = false"
      class="border-b z-30 border-gray-100 sticky
       top-0 shadow bg-gray-50">
 
@@ -28,7 +28,8 @@
 
             </div>
 
-            <nav @click.prevent="isSlide = false"
+            <nav x-data="{ isText: 't1' }"
+                @click.prevent="isSlide = false"
                  class="items-end absolute  right-4 mr-6 justify-end pl-8 ml-8 text-sm font-medium space-x-2 md:flex">
 
                 <div class="hidden lg:block space-x-2 ">
@@ -36,7 +37,7 @@
                     <a wire:click.prevent="$emit('home')"
                        class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
 
-                     hover:text-white border shadow hover:bg-green-400 "
+                     hover:text-white border shadow hover:bg-teal-500 "
 
                        href="{{ route('Admin.dashboard') }}">
 
@@ -45,41 +46,74 @@
                     </a>
 
                     <a @click.prevent="isLoans = !isLoans"
-                       class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
+                       @mouseover="isText = 't2'"
+                       @mouseleave="isText = 't1'"
+                       class="px-4 group py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
 
-                     hover:text-white border shadow hover:bg-green-400 "
+                     hover:text-white border shadow hover:bg-teal-500 "
 
                        href="#">
 
-                        <i class="far fa-hand-holding-usd text-lg pr-2"></i>
+                        <i class="far fa-hand-holding-usd text-lg"></i>
 
-                        Create Loans
+                        <span
+                            :class="isText === 't2' ? '' : 'hidden'"
+                            class="pl-2 transition transform duration-500 ease-in-out"
+                        > Create Loans</span>
 
                     </a>
 
                     <a @click.prevent="isRequest = !isRequest"
+                       @mouseover="isText = 't3'"
+                       @mouseleave="isText = 't1'"
                        class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
 
-                     hover:text-white border shadow hover:bg-green-400 "
+                     hover:text-white border shadow hover:bg-teal-500 "
 
                        href="#">
 
-                        <i class="far fa-hands-usd text-lg pr-2 "></i>
+                        <i class="far fa-hands-usd text-lg "></i>
 
-                        Requests
+                        <span
+                            :class="isText === 't3' ? '' : 'hidden'"
+                            class="pl-2 transition transform duration-500 ease-in-out"
+                        > Requests </span>
 
                     </a>
 
                     <a @click.prevent="updateSchedule = !updateSchedule"
+                       @mouseover="isText = 't4'"
+                       @mouseleave="isText = 't1'"
                        class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
 
-                     hover:text-white border shadow hover:bg-green-400 "
+                     hover:text-white border shadow hover:bg-teal-500 "
 
                        href="#">
 
-                        <i class="far fa-calendar-alt text-lg pr-2"></i>
+                        <i class="far fa-calendar-alt text-lg"></i>
 
-                        Update Appointment
+                        <span
+                            :class="isText === 't4' ? '' : 'hidden'"
+                            class="pl-2 transition transform duration-500 ease-in-out"
+                        > Update Appointment </span>
+
+                    </a>
+
+                    <a @click.prevent="isReview = !isReview"
+                       @mouseover="isText = 't5'"
+                       @mouseleave="isText = 't1'"
+                       class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg
+
+                     hover:text-white border shadow hover:bg-teal-500 "
+
+                       href="#">
+
+                        <i class="fas fa-star text-lg"></i>
+
+                        <span
+                            :class="isText === 't5' ? '' : 'hidden'"
+                            class="pl-2 transition transform duration-500 ease-in-out"
+                        > Interview Review </span>
 
                     </a>
 
@@ -165,7 +199,7 @@
              x-on:close-modal.window="isRequest = false"
              class="flex flex-col w-full h-full overflow-auto">
 
-            <div class="w-full px-4 text-center my-4">
+            <div class="w-full px-4 text-center my-2">
 
                 <h1
                     class="text-3xl pb-2 font-extrabold text-transparent sm:text-6xl bg-clip-text
@@ -181,7 +215,7 @@
 
     </x-modal>
 
-    <x-modal alpName="updateSchedule" class="z-30">
+    <x-modal class="z-30" alpName="updateSchedule">
 
         <div @keydown.esc.window="updateSchedule = false"
              x-on:close-modal.window="updateSchedule = false"
@@ -202,6 +236,29 @@
         </div>
 
     </x-modal>
+
+    <x-modal class="z-30" alpName="isReview">
+
+        <div
+             x-on:close-modal.window="isReview = false"
+             class="flex flex-col w-full h-full overflow-auto">
+
+            <div class="w-full px-4 sticky top-0 z-10 bg-white text-center my-2">
+
+                <h1
+                    class="text-lg pb-2 font-extrabold text-transparent sm:text-6xl bg-clip-text
+                       bg-gradient-to-r from-green-300 via-teal-500 to-green-600 border-b-2 border-gray-300">
+                    Interview Review
+                </h1>
+
+            </div>
+
+            @livewire('admin.create.interview-review')
+
+        </div>
+
+    </x-modal>
+
 
 </div>
 

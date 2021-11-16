@@ -94,7 +94,6 @@
 
                 <x-table.head> Maximum Value</x-table.head>
 
-                <x-table.head></x-table.head>
 
             </x-slot>
 
@@ -111,15 +110,6 @@
                     <x-table.cell class="transition duration-300 ease-in">
                         $ {{ number_format($loan->end_value,2) }} </x-table.cell>
 
-                    <x-table.cell class="transition duration-300 ease-in">
-
-                        <x-table.button.action class="bg-green-500">
-
-                            View
-
-                        </x-table.button.action>
-
-                    </x-table.cell>
 
                 </x-table.row>
 
@@ -195,7 +185,6 @@
 
                 <x-table.head> Approved By</x-table.head>
 
-                <x-table.head></x-table.head>
 
             </x-slot>
 
@@ -221,6 +210,15 @@
 
                             </strong>
 
+                        @elseif($requestLoan->status === 2)
+
+                            <strong
+                                class="inline-flex items-center px-3 py-1 text-xs font-semibold text-white uppercase bg-red-600 rounded-full">
+
+                                Rejected
+
+                            </strong>
+
                         @else
 
                             <strong
@@ -240,19 +238,9 @@
                     </x-table.cell>
 
                     <x-table.cell class="transition italic duration-300 ease-in">
-                        {{ ($requestLoan->approved_by) ?? 'To Be Approved' }}
+                        {{ ($requestLoan->user->username) ?? 'To Be Approved' }}
                     </x-table.cell>
 
-
-                    <x-table.cell class="transition duration-300 ease-in">
-
-                        <x-table.button.action class="bg-green-500">
-
-                            View
-
-                        </x-table.button.action>
-
-                    </x-table.cell>
 
                 </x-table.row>
 
@@ -324,7 +312,6 @@
 
                 <x-table.head> Contact Information</x-table.head>
 
-                <x-table.head></x-table.head>
 
             </x-slot>
 
@@ -342,15 +329,6 @@
                     <x-table.cell class="transition duration-300 ease-in">
                         {{ $customer->contact_no }} </x-table.cell>
 
-                    <x-table.cell class="transition duration-300 ease-in">
-
-                        <x-table.button.action class="bg-green-500">
-
-                            View
-
-                        </x-table.button.action>
-
-                    </x-table.cell>
 
                 </x-table.row>
 

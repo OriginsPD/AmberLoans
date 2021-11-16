@@ -26,6 +26,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Appointment whereTimeSlot($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Appointment whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int|null $status
+ * @method static \Illuminate\Database\Eloquent\Builder|Appointment whereStatus($value)
  */
 class Appointment extends Model
 {

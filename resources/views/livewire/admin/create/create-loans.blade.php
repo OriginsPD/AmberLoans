@@ -31,13 +31,13 @@
             <x-input.select wire:model.debounce.300ms="loan.loan_percentage" field="Percentage"
                             :error="$errors->first('loan.loan_percentage')" >
 
-                <option value="60">60%</option>
-                <option value="65">65%</option>
-                <option value="70">70%</option>
-                <option value="75">75%</option>
-                <option value="80">80%</option>
-                <option value="85">85%</option>
-                <option value="90">90%</option>
+                <option value="0.60">60%</option>
+                <option value="0.65">65%</option>
+                <option value="0.70">70%</option>
+                <option value="0.75">75%</option>
+                <option value="0.80">80%</option>
+                <option value="0.85">85%</option>
+                <option value="0.90">90%</option>
 
             </x-input.select>
 
@@ -55,14 +55,13 @@
             <x-input.select wire:model.debounce.300ms="loan.monthly_payment" field="Percentage"
                             :error="$errors->first('loan.monthly_payment')" >
 
-                <option value="6">6%</option>
-                <option value="7.5">7.5%</option>
-                <option value="8">8%</option>
-                <option value="8.5">8.5%</option>
-                <option value="9">9%</option>
-                <option value="9.22">9.22%</option>
-                <option value="10">10%</option>
-                <option value="15">15%</option>
+                <option value="0.006">6%</option>
+                <option value="0.0075">7.5%</option>
+                <option value="0.008">8%</option>
+                <option value="0.0085">8.5%</option>
+                <option value="0.009">9%</option>
+                <option value="0.00922">9.22%</option>
+                <option value="0.010">10%</option>
 
             </x-input.select>
 

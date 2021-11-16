@@ -53,14 +53,15 @@
                 Cancel
             </x-input.submit>
 
-            <x-input.submit color="green">
+            <x-input.submit color="blue">
 
-                <span wire:loading.delay wire:loading.class="animate-spin">
+                <span wire:loading.delay.longer wire:loading.class="animate-spin">
 
                     <i class="far fa-spinner transform duration-300 text-white "></i>
 
                 </span>
-                Create Loan
+
+                Plan Interview
 
             </x-input.submit>
 

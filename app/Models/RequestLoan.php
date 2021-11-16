@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\RequestLoan
@@ -15,19 +18,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $status
  * @property string|null $approve_date
  * @property int $approved_by
- * @property-read \App\Models\Customer $customer
- * @property-read \App\Models\Loan $loan
- * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|RequestLoan newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|RequestLoan newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|RequestLoan query()
- * @method static \Illuminate\Database\Eloquent\Builder|RequestLoan whereApproveDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestLoan whereApprovedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestLoan whereCustomerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestLoan whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestLoan whereLoanId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestLoan whereStatus($value)
- * @mixin \Eloquent
+ * @property-read Customer $customer
+ * @property-read Loan $loan
+ * @property-read User $user
+ * @method static Builder|RequestLoan newModelQuery()
+ * @method static Builder|RequestLoan newQuery()
+ * @method static Builder|RequestLoan query()
+ * @method static Builder|RequestLoan whereApproveDate($value)
+ * @method static Builder|RequestLoan whereApprovedBy($value)
+ * @method static Builder|RequestLoan whereCustomerId($value)
+ * @method static Builder|RequestLoan whereId($value)
+ * @method static Builder|RequestLoan whereLoanId($value)
+ * @method static Builder|RequestLoan whereStatus($value)
+ * @mixin Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ActiveLoan[] $activeLoan
+ * @property-read int|null $active_loan_count
  */
 class RequestLoan extends Model
 {
@@ -56,5 +61,10 @@ class RequestLoan extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function activeLoan(): HasMany
+    {
+        return $this->hasMany(ActiveLoan::class, 'request_id');
     }
 }

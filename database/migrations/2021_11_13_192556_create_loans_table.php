@@ -18,9 +18,9 @@ class CreateLoansTable extends Migration
             $table->string('name');
             $table->bigInteger('start_value');
             $table->bigInteger('end_value');
-            $table->float('loan_percentage');
+            $table->double('loan_percentage',8,2);
             $table->integer('duration')->comment('months');
-            $table->float('monthly_payment');
+            $table->double('monthly_payment',8,4);
         });
     }
 

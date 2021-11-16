@@ -38,7 +38,7 @@
 
                 <li>Signed Sales Agreement.</li>
 
-                <li>Current Valuation (done in the last year) by one of our Approved Valuators</li>
+                <li>Current Valuation (done in the last year) by one of our Approved Validators</li>
 
                 <li>Updated property tax receipt and most recent water bill.</li>
 

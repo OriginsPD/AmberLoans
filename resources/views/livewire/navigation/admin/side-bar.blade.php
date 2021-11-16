@@ -27,7 +27,7 @@
 
                 <x-link.side>
 
-                    {{ __('View Loans Information') }}
+                    {{ __('View Active Loans') }}
                 </x-link.side>
 
                 <x-link.side wire:click.prevent="$emit('show-loans-request')">

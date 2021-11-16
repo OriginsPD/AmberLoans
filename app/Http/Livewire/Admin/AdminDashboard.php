@@ -108,7 +108,7 @@ class AdminDashboard extends Component
 
             'loanRequest' => RequestLoan::all()->count(),
 
-            'allInterview' => Appointment::count()
+            'allInterview' => Appointment::where('status',1)->count()
         ])
             ->extends('layouts.admin');
     }
